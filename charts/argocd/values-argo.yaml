@@ -6,9 +6,13 @@ controller:
 
 server:
   replicas: 1
+  imagePullSecrets:
+    - name: regcred
 
 repoServer:
-  replicas: 1s
+  replicas: 1
+  imagePullSecrets:
+    - name: regcred
 
 applicationSet:
   replicas: 1
@@ -26,3 +30,6 @@ server:
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     tls: true
+    hosts:
+      - argocd.los.com
+    tlsSecretName: argocd-tls
