@@ -31,5 +31,5 @@ server:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     tls: true
     hosts:
-      - argocd.los.com
-    tlsSecretName: argocd-tls
+      - python-service.app
+    tlsSecretName: python-service-tls
