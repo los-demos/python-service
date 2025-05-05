@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 host = os.getenv("FLASK_RUN_HOST", "0.0.0.0")
-message = {"time": datetime.datetime.now().strftime("%I:%M:%S%p  on %B %d, %Y"), "hostname": socket.gethostname(), "data": "AI is the future!"}
+message = {"time": datetime.datetime.now().strftime("%I:%M:%S%p  on %B %d, %Y"), "hostname": socket.gethostname(), "data": "AI is the future!!"}
 health_message = {"status": "up"}
 
 @app.route('/api/v1/details')
