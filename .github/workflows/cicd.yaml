@@ -37,14 +37,14 @@ jobs:
         name: Download & install argocd
         shell: bash
         run: |
-          curl -k -sSL -o argocd-linux-amd64 https://argocd-server-7d5d79fcbc-szbsb.argocd/download/argocd-linux-amd64
+          curl -k -sSL -o argocd-linux-amd64 https://argocd.los.com/download/argocd-linux-amd64
           chmod +x argocd
           sudo mv ./argocd /usr/local/bin/argocd
       -
         name: Run Argocd app sync
         shell: bash
         run: |
-          argocd login argocd-server-7d5d79fcbc-szbsb.argocd \
+          argocd login argocd.los.com \
             --grpc-web \
             --insecure \
             --username admin \
