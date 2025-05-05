@@ -1,0 +1,53 @@
+name: cicd 
+
+on:
+  push:
+    paths:
+      - src/**
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Shorten commit SHA
+        shell: bash
+        run: |
+          echo "COMMIT_ID=${GITHUB_SHA::6}" >> "$GITHUB_ENV"
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: doclosjs/flask-python-service:${{env.COMMIT_ID}}
+
+jobs:
+  cd:
+    needs: ci
+    runs-on: arc-runner-set
+    steps:
+      -
+        name: Download & install argocd
+        shell: bash
+        run: |
+          curl -k -sSL -o argocd-linux-amd64 https://argocd-server-7d5d79fcbc-szbsb.argocd/download/argocd-linux-amd64
+          chmod +x argocd
+          sudo mv ./argocd /usr/local/bin/argocd
+      -
+        name: Run Argocd app sync
+        shell: bash
+        run: |
+          argocd login argocd-server-7d5d79fcbc-szbsb.argocd \
+            --grpc-web \
+            --insecure \
+            --username admin \
+            --password ${{ secrets.ARGOCD_PASSWORD }}
+          argocd app sync python-service
