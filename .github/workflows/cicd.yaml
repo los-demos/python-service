@@ -28,11 +28,27 @@ jobs:
         with:
           push: true
           tags: doclosjs/flask-python-service:${{env.COMMIT_ID}}
+    outputs:
+      commit_id: ${{env.COMMIT_ID}}
 
   cd:
     needs: ci
     runs-on: arc-runner-set
     steps:
+      -
+        name: Clone the repo
+        uses: actions/checkout@v3
+      - 
+        name: Modify values file
+        shell: bash
+        run: |
+          pip install yq
+          yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-service/values.yaml
+      -
+        name: Commit changes and push
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Upates values.yaml file with commit: ${{needs.ci.outputs.commit_id}}'
       -
         name: Download & install argocd CLI
         shell: bash
