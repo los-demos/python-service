@@ -48,7 +48,9 @@ jobs:
         name: Modify values file
         shell: bash
         run: |
-          pip install yq
+          python3 -m pip install --user pipx
+          export PATH="$HOME/.local/bin:$PATH"
+          pipx install yq
           yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-service/values.yaml
       -
         name: Commit changes and push
