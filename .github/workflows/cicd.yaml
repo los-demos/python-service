@@ -29,7 +29,6 @@ jobs:
           push: true
           tags: doclosjs/flask-python-service:${{env.COMMIT_ID}}
 
-jobs:
   cd:
     needs: ci
     runs-on: arc-runner-set
