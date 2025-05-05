@@ -34,17 +34,17 @@ jobs:
     runs-on: arc-runner-set
     steps:
       -
-        name: Download & install argocd
+        name: Download & install argocd CLI
         shell: bash
         run: |
-          curl -k -sSL -o argocd-linux-amd64 https://argocd.los.com/download/argocd-linux-amd64
-          chmod +x argocd
-          sudo mv ./argocd /usr/local/bin/argocd
+          curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x argocd-linux-amd64
+          sudo mv argocd-linux-amd64 /usr/local/bin/argocd
       -
         name: Run Argocd app sync
         shell: bash
         run: |
-          argocd login argocd.los.com \
+          argocd login argocd-server.argocd.svc.cluster.local \
             --grpc-web \
             --insecure \
             --username admin \
