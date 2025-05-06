@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: doclosjs/flask-python-service
   pullPolicy: IfNotPresent
-  tag: "d6cdd3"
+  tag: "1c69b0"
 imagePullSecrets:
   - name: regcred
 nameOverride: ""
