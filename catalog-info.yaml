@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: python-service
+  description: A Python service that dsplays time
+  # Example for optional annotations
+  annotations:
+    github.com/project-slug: c2r79/python-service
+spec:
+  type: service
+  owner: carlos@tesing.edu
+  lifecycle: experimental
