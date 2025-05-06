@@ -8,5 +8,5 @@ metadata:
     github.com/project-slug: c2r79/python-service
 spec:
   type: service
-  owner: carlos@tesing.edu
+  owner: development
   lifecycle: experimental
