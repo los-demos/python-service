@@ -1,7 +1,7 @@
 site_name:  'pyton-service'
 site_description: 'Main documentation for our Python service'
 repo_url: https://github.com/c2r79/python-service
-edit_uri: edit/master/docs
+edit_uri: edit/main/docs
 
 plugins:
   - techdocs-core
