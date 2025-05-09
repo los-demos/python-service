@@ -8,4 +8,4 @@ plugins:
 
 nav:
   - Introduction:
-    - Getting started: 'docs/index.md'
+    - Getting started: 'index.md'
