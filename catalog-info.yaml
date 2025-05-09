@@ -3,9 +3,10 @@ kind: Component
 metadata:
   name: python-service
   description: A Python service that dsplays time
-  # Example for optional annotations
+
   annotations:
     github.com/project-slug: c2r79/python-service
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: development
