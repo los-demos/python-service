@@ -1,0 +1,19 @@
+apiVersion: actions.github.com/v1alpha1
+kind: AutoScalingRunnerSet
+metadata:
+  name: org-runner
+  namespace: arc-systems
+  # namespace: actions-runner-system
+spec:
+  githubConfigUrl: https://github.com/los-demos
+  minRunners: 1
+  maxRunners: 5
+  runnerGroup: default
+  template:
+    spec:
+      containers:
+        - name: runner
+          image: ghcr.io/actions/runner:latest
+      # Optional: add labels if needed
+      labels:
+        - arc-runner-set
